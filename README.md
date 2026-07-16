@@ -8,3 +8,19 @@ Card Import Service
 Работает как фоновая служба Windows. Настроен через config.ini, ведет логи и историю обработанных писем.
 
 Создан с использованием Python и ИИ-ассистента как инструмента ускорения разработки. Полный цикл: от идеи до продакшена — 40 часов.
+
+📁 Структура проекта
+text
+D:\UCS\IMPORT\
+├── mail.py                  # Проверка почты
+├── main.py                  # Обработка ZIP
+├── convert_last12.py        # Конвертер
+├── email_service.py         # Служба
+├── config.ini               # Настройки
+├── processed_emails.json    # История писем
+├── install_service.bat      # Установка
+├── uninstall_service.bat    # Удаление
+├── Cardimp.exe              # Утилита импорта
+├── attachments\             # Вложения из писем
+├── OLD\                     # Архив обработанных
+└── logs\                    # Логи
