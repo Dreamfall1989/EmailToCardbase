@@ -10,17 +10,18 @@ Card Import Service
 Создан с использованием Python и ИИ-ассистента как инструмента ускорения разработки. Полный цикл: от идеи до продакшена — 40 часов.
 
 📁 Структура проекта
-text
+```text
 D:\UCS\IMPORT\
 ├── mail.py                  # Проверка почты
 ├── main.py                  # Обработка ZIP
-├── convert_last12.py        # Конвертер
-├── email_service.py         # Служба
+├── convert_last12.py        # Конвертер CSV → TXT
+├── email_service.py         # Служба Windows
 ├── config.ini               # Настройки
 ├── processed_emails.json    # История писем
-├── install_service.bat      # Установка
-├── uninstall_service.bat    # Удаление
-├── Cardimp.exe              # Утилита импорта
+├── install_service.bat      # Установка службы
+├── uninstall_service.bat    # Удаление службы
+├── Cardimp.exe              # Утилита импорта в БД
 ├── attachments\             # Вложения из писем
 ├── OLD\                     # Архив обработанных
-└── logs\                    # Логи
+└── logs\                    # Логи работы
+```
