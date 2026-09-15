@@ -1,0 +1,12 @@
+config.ini
+processed_emails.json
+logs/
+attachments/
+OLD/
+CHG_OLD/
+__pycache__/
+*.pyc
+*.zip
+*.csv
+*.txt
+Cardimp.exe
