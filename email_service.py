@@ -235,10 +235,34 @@ class EmailProcessorService(win32serviceutil.ServiceFramework):
         self.logger.info(f"  Команда: {' '.join(command)}")
         self.logger.handlers[0].flush()
 
+        child_env = os.environ.copy()
+        for variable in ("PYTHONHOME", "PYTHONPATH", "PYTHONEXECUTABLE"):
+            child_env.pop(variable, None)
+        python_dir = os.path.dirname(self.python_exe)
+        child_env["PATH"] = python_dir + os.pathsep + child_env.get("PATH", "")
+
         try:
+            probe = subprocess.run(
+                [self.python_exe, "-c", "print('Python child startup OK')"],
+                cwd=SCRIPT_DIR,
+                env=child_env,
+                creationflags=subprocess.CREATE_NO_WINDOW,
+                capture_output=True,
+                text=True,
+                encoding='utf-8',
+                errors='replace'
+            )
+            self.logger.info(f"  Проверка запуска Python: код возврата {probe.returncode}")
+            if probe.stdout:
+                self.logger.info(f"  Проверка запуска Python stdout: {probe.stdout.strip()}")
+            if probe.stderr:
+                self.logger.error(f"  Проверка запуска Python stderr: {probe.stderr.strip()}")
+
             result = subprocess.run(
                 command,
                 cwd=SCRIPT_DIR,
+                env=child_env,
+                creationflags=subprocess.CREATE_NO_WINDOW,
                 capture_output=True,
                 text=True,
                 encoding='utf-8',
